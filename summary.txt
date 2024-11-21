@@ -1,0 +1,96 @@
+                        1. Technologies used:
+
+Node.js: I chose Node.js for its fast, lightweight, and asynchronous architecture, making it ideal for 
+handling server-side operations like adding points, spending them, and retrieving balances without 
+blocking the server.
+
+Express.js: Express.js simplified the creation of the API by allowing me to define clean routes for 
+adding points, spending them, and fetching balances, while seamlessly integrating middleware to handle 
+JSON request bodies.
+
+MongoDB: I used MongoDB for its flexible, document-based structure, which is perfect for managing 
+dynamic transaction data across multiple payers, while also offering scalability for future project 
+growth.
+
+Mongoose: Mongoose helped me define a clear schema for transaction data, ensuring consistency with 
+fields like payer, points, and timestamp, while also simplifying database queries and validations.
+
+Postman: Postman was essential for testing endpoints, ensuring points were added correctly, 
+spent according to FIFO rules, and that balances were accurate, making debugging quick and efficient.
+
+Nodemon: I used Nodemon to streamline development by automatically restarting the server whenever 
+code changes were made, saving time and improving productivity.
+
+
+
+
+                2. Advantages and Disadvantaged
+
+    Advantages: 
+
+1. Straightforward Endpoint Logic: I designed the endpoints (addPoints, spendPoints, getBalances) to 
+serve clear, single purposes, making the API easy for developers to understand and integrate without 
+unnecessary complexity.
+
+2. Precise FIFO Deduction: The spendPoints endpoint applies the FIFO (oldest-first) rule using MongoDB's 
+sorting, deducting points from the oldest transactions while preventing negative balances for any payer.
+
+
+3. Validation Built-In: The addPoints endpoint validates all transactions, adding positive points 
+normally and processing negative points only if the payer exists and has sufficient balance, ensuring 
+the system remains reliable and error-free.
+
+4. Flexible Data Storage: I used MongoDB with Mongoose to enforce key fields like payer, points, 
+and timestamp while allowing flexibility for future changes without disrupting the current implementation.
+
+
+5. Efficient Handling of Deductions: The spendPoints logic processes deductions iteratively, 
+updating transactions directly in the database to ensure accurate calculations and maintain 
+data integrity.
+
+6. Technology Choice Matches Scope: I chose Express.js for its lightweight API framework and 
+MongoDB for its efficient handling of dynamic transaction data, aligning with the single-user, 
+transaction-heavy project requirements.
+
+    Disadvantages: 
+1. No Cleanup of Zero-Point Transactions: Zero-point transactions remain in the database, creating 
+unnecessary clutter and wasting storage space over time. Introducing a cleanup mechanism to 
+automatically remove or consolidate these entries would keep the database organized and 
+efficient without manual intervention.
+
+2. Single-User Design: Since the API is built for a single user, it lacks the flexibility to 
+handle multiple users or broader use cases. Enhancing the design with user authentication and
+ associating transactions with user IDs would open the door to multi-user support, making the system 
+ more versatile and scalable.
+
+3. Suboptimal Performance for Large Data: The current spendPoints logic handles transactions one by one, 
+which can lead to noticeable slowdowns as the database grows. By adopting MongoDB's aggregation pipeline
+ or similar batching techniques, processing speed could improve significantly, even with a large dataset.
+
+4. Error Responses Are Generic: Generic error responses like "400" or "500" fail to provide helpful 
+details when something goes wrong. Adding clear, descriptive error messages—such as “Payer not found” 
+or “Insufficient points”—would not only make debugging easier but also offer better guidance to users
+interacting with the API.
+
+5. No Mechanism for Transaction History: Once points are deducted, the original transactions are 
+either updated or zeroed out, leaving no record of what happened. Adding a system to log changes or 
+maintain a history table would preserve this critical information, supporting audits and making it 
+easier to track and analyze past activities.
+
+
+                3. Favorite project
+
+One of my favorite projects was the AWS Resume Project, which I worked on during the Vista 
+Hackathon. It was an intense 24-hour challenge where I collaborated with engineers from ICIMS 
+to build a backend system using Flask and integrate AWS Bedrock and LangChain for resume 
+analysis and job matching.
+
+The fast pace of the hackathon and learning LangChain on the fly were the toughest parts. 
+I had to quickly figure out how to break down resume data using AWS Titan, design clear prompts, 
+and include examples to guide the AI model toward better results. It was both exciting and challenging
+to create a pipeline that made the system work smoothly.
+
+What made this project special was the chance to work closely with experienced engineers, 
+learn their approaches, and see how all the pieces came together. It taught me how to adapt to new
+technologies under pressure, solve problems quickly, and build something meaningful in a very short 
+time. It was a rewarding experience that pushed me to grow and think on my feet.

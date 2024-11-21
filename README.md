@@ -1,6 +1,3 @@
-# Fetch-Backend-Assignment
-Fetch Points Tracker: A REST API to handle user points transactions, supporting adding points, spending points, and fetching payer-specific balances.
-
 Points Tracker API
 Overview
 The Points Tracker API is a backend system built to manage points for a single user. It supports adding, spending, and viewing the balance of points for multiple payers while adhering to business rules such as oldest-first (FIFO) deductions.
@@ -31,5 +28,4 @@ bash
 Copy code
 npm start
 The server will start at http://localhost:8000.
-
 

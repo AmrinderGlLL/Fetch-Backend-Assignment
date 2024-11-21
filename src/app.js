@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/database');
-const pointsRoutes = require('./routes/pointsRoutes'); // Import points routes
+const pointsRoutes = require('./routes/pointsRoutes'); 
 const PORT = process.env.PORT || 8000;
 require('dotenv').config();
 
